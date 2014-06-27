@@ -1,0 +1,36 @@
+
+sourceCompatibility = 1.8
+version = '1.0'
+
+repositories {
+    mavenCentral()
+}
+
+buildscript {
+  repositories {
+    jcenter()
+    mavenCentral()
+  }
+  dependencies {
+        classpath 'com.github.jengelman.gradle.plugins:shadow:0.8'
+        classpath 'org.ow2.asm:asm:5.0'
+        classpath 'org.ow2.asm:asm-commons:5.0'
+  }
+}
+
+apply plugin: 'java'
+apply plugin: 'shadow'
+
+dependencies {
+    compile 'com.google.guava:guava:17.0'
+}
+
+shadow {
+
+    relocation {
+        pattern = 'com.google'
+        shadedPattern = 'asmTest.com.google'
+    }
+
+}
+
